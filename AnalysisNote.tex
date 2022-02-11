@@ -1,0 +1,260 @@
+\documentclass{cmspaper}
+
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[section]{placeins}
+\usepackage{hepnames}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{makecell}
+\usepackage{ulem}
+\usepackage{epstopdf}
+\usepackage{multirow}
+\usepackage{longtable}
+
+%Add line numbers
+\usepackage{lineno}
+\linenumbers
+
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\renewcommand{\c}[1]{\,{\rm cos}\,#1}
+\newcommand{\s}[1]{\,{\rm sin}\,#1}
+\renewcommand{\cos}[1]{\,{\rm cos}(#1)}
+\renewcommand{\sin}[1]{\,{\rm sin}(#1)}
+\def\pslash{\not{\hbox{\kern-2pt p}}}
+
+\definecolor{mygreen}{rgb}{0.12, 0.3, 0.17}
+\definecolor{myred}{rgb}{0.45, 0.0, 0.09}
+\definecolor{myblue}{rgb}{0.1, 0.1, 0.44}
+\newcommand{\I}[1]{\ensuremath{\mathrm{\textcolor{mygreen}{\textbf{#1}}}}}
+\newcommand{\V}[1]{\ensuremath{\mathrm{\textcolor{myblue}{\textbf{#1}}}}}
+\newcommand{\D}[1]{\ensuremath{\mathrm{\textcolor{myred}{\textbf{#1}}}}}
+\newcommand{\lab}{\ensuremath{\mathrm{\textbf{lab}}}}
+
+\newcommand{\pfour}[2]{\ensuremath{\mathbf{p}_{\footnotesize #1}^{\footnotesize~#2}}}
+\newcommand{\pthree}[2]{\ensuremath{\vec{p}_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\pone}[2]{\ensuremath{p_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\phat}[2]{\ensuremath{\hat{p}_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\E}[2]{\ensuremath{E_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\vbeta}[2]{\ensuremath{\vec{\beta}_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\sbeta}[2]{\ensuremath{\beta_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\hbeta}[2]{\ensuremath{\hat{\beta}_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\sgamma}[2]{\ensuremath{\gamma_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\mass}[2]{\ensuremath{m_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\Mass}[2]{\ensuremath{M_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\boost}[2]{\ensuremath{\Lambda_{\footnotesize#1}^{\footnotesize~#2}}}
+\newcommand{\HT}{\ensuremath{H_{\mathrm{T}}}\xspace}
+\newcommand{\met}{\ensuremath{p_{\mathrm{T}}^{\text{miss}}}\xspace}
+\newcommand{\metvec}{\ensuremath{\vec{p}_{\mathrm{T}}^{\text{~miss}}}\xspace}
+\newcommand{\dr}{\ensuremath{\Delta {\rm R}}\xspace}
+
+\newcommand{\risr}{\ensuremath{R_{\rm ISR}}\xspace}
+\newcommand{\ptisr}{\ensuremath{p_{\rm T}^{\rm~ISR}}\xspace}
+\newcommand{\mperp}{\ensuremath{M_{\perp}}\xspace}
+\newcommand{\gperp}{\ensuremath{\gamma_{\perp}}\xspace}
+\newcommand{\ptcm}{\ensuremath{p_{\rm T}^{\rm~CM}}\xspace}
+\newcommand{\dphicmi}{\ensuremath{\Delta \phi_{\rm CM,I}}\xspace}
+
+\newcommand{\NjetISR}{\ensuremath{\rm N_{\rm jet}^{\rm ISR}}\xspace}
+\newcommand{\Nlep}{\ensuremath{\rm N_{\rm lep}}\xspace}
+\newcommand{\NjetS}{\ensuremath{\rm N_{\rm jet}^{\rm S}}\xspace}
+\newcommand{\NbISR}{\ensuremath{\rm N_{\rm {\Pqb}~tag}^{\rm ISR}}\xspace}
+\newcommand{\NbS}{\ensuremath{\rm N_{\rm {\Pqb}~tag}^{\rm S}}\xspace}
+\newcommand{\NsvS}{\ensuremath{\rm N_{\rm SV}^{\rm S}}\xspace}
+\newcommand{\etaSV}{\ensuremath{\eta_{\rm SV}^{\rm S}}\xspace}
+
+%\epstopdfDeclareGraphicsRule{.gif}{png}{.png}{convert gif:#1 png:\OutputFile}
+%\epstopdfDeclareGraphicsRule{.gif}{pdf}{.pdf}{convert gif:#1 pdf:\OutputFile}
+%\AppendGraphicsExtensions{.gif}
+
+\input{mymathdefns}
+\input{sparticledefns}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,    %Section labels etc
+    citecolor=black,    %Color of in-line citation
+    filecolor=magenta,
+    urlcolor=blue,      %Color of URL links for DOI and for arXiv.
+}
+% \urlstyle{same}
+
+% Try to circumvent "Output loop---100 consecutive dead cycles." error
+\maxdeadcycles=300
+\extrafloats{100}
+
+\begin{document}
+
+%==============================================================================
+% title page for few authors
+
+\begin{titlepage}
+
+% select one of the following and type in the proper number:
+   \cmsnote{AN-2022-X}
+%  \internalnote{2005/000}
+%  \conferencereport{2005/000}
+   Version 3   %Change for each major distributed version.
+   \date{\today}
+
+  \title{Material Measurements Using Photon Conversions}
+
+  \begin{Authlist}
+    Justin Anguiano,
+    Graham Wilson
+       \Instfoot{cern}{University of Kansas}
+  \end{Authlist}
+
+% if needed, use the following:
+%\collaboration{Flying Saucers Investigation Group}
+%\collaboration{CMS collaboration}
+
+  %\Anotfoot{a}{On leave from prison}
+  %\Anotfoot{b}{Now at the Moon}
+
+\input{tex/abstract}
+
+% if needed, use the following:
+%\conference{Presented at {\it Physics Rumours}, Coconut Island, April 1, 2005}
+%\submitted{Submitted to {\it Physics Rumours}}
+%\note{Preliminary version}
+
+\end{titlepage}
+
+\setcounter{page}{2}%JPP
+
+%==============================================================================
+% title page for many authors
+%
+%\begin{titlepage}
+%  \internalnote{2005/000}
+%  \title{CMS Technical Note Template}
+%
+%  \begin{Authlist}
+%    A.~Author\Iref{cern}, B.~Author\Iref{cern}, C.~Author\IAref{cern}{a},
+%    D.~Author\IIref{cern}{ieph}, E.~Author\IIAref{cern}{ieph}{b},
+%    F.~Author\Iref{ieph}
+%  \end{Authlist}
+%
+%  \Instfoot{cern}{CERN, Geneva, Switzerland}
+%  \Instfoot{ieph}{Institute of Experimental Physics, Hepcity, Wonderland}
+%  \Anotfoot{a}{On leave from prison}
+%  \Anotfoot{b}{Now at the Moon}
+%
+%  \begin{abstract}
+%    This is a template of a CMS paper, written in LaTeX,
+%    processed with {\it cmspaper.sty} style.
+%    It is based on the {\it cernart.sty} and {\it articlet.sty} styles.
+%    There are two versions of the title page.
+%    The current one is designed for many authors.
+%    The one on the previous page is for few authors.
+%    Just delete the one which you do not need.
+%  \end{abstract}
+%
+%\end{titlepage}
+%
+%==============================================================================
+
+\tableofcontents
+
+%\input{tex/update-log.tex}
+
+\clearpage
+
+\section{Introduction \label{sec:intro}}
+\input{tex/sec_intro}
+
+\pagebreak
+
+\section{Data and Simulated Event Samples \label{sec:samples}}
+%\input{tex/sec_samples}
+
+\clearpage
+
+\pagebreak
+
+\section{Photon Conversion Reconstruction \label{sec:reco}}
+%\input{tex/sec_reco}
+
+%\subsection{Jet and Soft Vertex {\Pqb} tagging\label{sec:btag}}
+%\input{tex/b_tagging}
+
+
+
+%\input{tex/sec_RJR}
+
+\section{Analysis Strategy and Selection \label{sec:analysis}}
+%\input{tex/sec_analysis}
+
+\section{Efficiency and Photon Flux \label{sec:effandflux}}
+
+
+\section{Results \label{sec:results}}
+%\input{tex/sec_results}
+
+% Select ONE bibliography style
+% tdr script includes elsarticle-num-names, lucas_unsrt, lucas_unsrt_epjc
+%\bibliographystyle{unsrt}
+%\bibliographystyle{elsarticle-num-names}
+%\bibliographystyle{lucas_unsrt}
+\bibliographystyle{lucas_unsrt_epjc}
+
+
+% For easier maintenance - split bib files per section.
+\bibliography{bibs/intro}
+%\bibliography{bibs/intro,bibs/b_tagging,chapters_from_dissertation/allcites}
+
+%\bibliography{intro}
+%\begin{thebibliography}{9}
+%  \bibitem {NOTE000} {\bf CMS Note 2005/000},
+%    X.Somebody et al.,
+%    {\em "CMS Note Template"}.
+%\end{thebibliography}
+
+
+\appendix
+\section{Test Appendix \label{app:testApp}}
+%\section{Lepton Objects \label{app:lepObj}}
+%\input{tex/app_lepObj}
+
+%\section{Event Cleaning Filters \label{app:filters}}
+%\input{tex/app_filters}
+
+%\section{Trigger Strategy \label{app:triggers}}
+%\input{tex/app_triggers}
+
+%\section{Secondary Vertex {\it b}-tagging data to MC comparison
+%\label{app:svbapp}}
+%\input{tex/app_svb}
+
+%\input{tex/app_kin}
+
+%\section{On the choice of the binning \label{app:binning}}
+%\input{tex/app_PTISR_gamT_binning}
+
+%\section{Category Plots \label{app:catplots}}
+%\input{tex/app_catsig}
+
+%\section{Likelihood Ratio Test \label{app:likelihood}}
+%\input{tex/app_likelihood}
+
+%\section{Control Region Fits \label{app:CRFits}}
+%\input{tex/app_controlregionfits}
+
+%\section{Additional Signal Samples \label{app:samples}}
+%\input{tex/app_samples}
+
+%\section{Systematics \label{app:systematics}}
+%\input{tex/app_systematics}
+
+
+\end{document}
